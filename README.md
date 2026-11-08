@@ -23,8 +23,8 @@ masing-masing.
 
 ## Library
 
-- `Wire.h` dan `Servo.h` — bawaan Arduino IDE.
-- `LiquidCrystal_I2C.h` — pasang lewat **Library Manager** di Arduino IDE.
+- `Wire.h` dan `Servo.h` - bawaan Arduino IDE.
+- `LiquidCrystal_I2C.h` - pasang lewat **Library Manager** di Arduino IDE.
 
 ## Cara memakai
 
