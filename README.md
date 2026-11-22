@@ -122,20 +122,24 @@ NamaProyek/
 
 ## Status verifikasi
 
-| Proyek | Kompilasi | Lint diagram Wokwi |
-| --- | --- | --- |
-| SensorUltrasonik | ✅ `arduino:avr:uno` | ✅ |
-| SensorSuara | ✅ `arduino:avr:uno` | ✅ |
-| SensorKelembapanTanah | ✅ `arduino:avr:uno` | ✅ |
-| LampuLaluLintas | ✅ `arduino:avr:uno` | ✅ |
-| AlarmGerakPIR | ✅ `arduino:avr:uno` | ✅ |
-| ParkirOtomatis | ✅ `arduino:avr:uno` | ✅ |
-| KunciPintarKeypad | ✅ `arduino:avr:uno` | ✅ |
-| StasiunCuacaDHT22 | ✅ `arduino:avr:uno` | ✅ |
-| MonitorSuhuWebESP32 | ⏳ menunggu core ESP32 | ✅ |
+| Proyek | Kompilasi | Lint diagram | Simulasi Wokwi |
+| --- | --- | --- | --- |
+| SensorUltrasonik | ✅ `arduino:avr:uno` | ✅ | ✅ |
+| SensorSuara | ✅ `arduino:avr:uno` | ✅ | ✅ |
+| SensorKelembapanTanah | ✅ `arduino:avr:uno` | ✅ | ✅ |
+| LampuLaluLintas | ✅ `arduino:avr:uno` | ✅ | ✅ |
+| AlarmGerakPIR | ✅ `arduino:avr:uno` | ✅ | ✅ |
+| ParkirOtomatis | ✅ `arduino:avr:uno` | ✅ | ✅ |
+| KunciPintarKeypad | ✅ `arduino:avr:uno` | ✅ | ✅ |
+| StasiunCuacaDHT22 | ✅ `arduino:avr:uno` | ✅ | ✅ |
+| MonitorSuhuWebESP32 | ✅ `esp32:esp32:esp32` | ✅ | ✅ |
 
-Verifikasi kompilasi memakai `arduino-cli`, sedangkan validasi rangkaian memakai
-`wokwi-cli lint` resmi dari Wokwi.
+Verifikasi kompilasi memakai `arduino-cli`, validasi rangkaian memakai
+`wokwi-cli lint`, dan pengujian perilaku memakai **Automation Scenario** Wokwi
+(`tests/`). Kesembilan proyek sudah lulus simulasi otomatis di Wokwi CI.
+
+> Tombol pada diagram memakai atribut `"bounce": "0"` agar hasil pengujian
+> otomatis konsisten. Pada rangkaian nyata, debounce tetap ditangani oleh sketch.
 
 ## Catatan perubahan
 

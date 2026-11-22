@@ -9,13 +9,13 @@ steps:
   # Objek didekatkan ke sensor -> target terkunci
   - set-control:
       part-id: ultrasonik
-      control: distance
+      name: distance
       value: 10
   - wait-serial: 'TARGET TERKUNCI'
 
   # Objek dijauhkan -> radar kembali memindai
   - set-control:
       part-id: ultrasonik
-      control: distance
+      name: distance
       value: 100
   - wait-serial: 'Jarak:'

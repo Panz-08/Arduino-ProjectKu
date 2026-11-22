@@ -3,7 +3,7 @@
   "author": "Panz-08",
   "editor": "wokwi",
   "parts": [
-    { "type": "board-arduino-uno", "id": "uno", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 0, "left": 0, "attrs": {} },
 
     { "type": "wokwi-pir-motion-sensor", "id": "pir", "top": -100, "left": 300, "attrs": { "delayTime": "5" } },
 
@@ -12,7 +12,7 @@
 
     { "type": "wokwi-buzzer", "id": "buzzer", "top": 100, "left": 430, "attrs": { "volume": "0.5" } },
 
-    { "type": "wokwi-pushbutton", "id": "tombol", "top": 100, "left": 560, "attrs": { "color": "blue", "label": "ARM/DISARM" } }
+    { "type": "wokwi-pushbutton", "id": "tombol", "top": 100, "left": 560, "attrs": { "color": "blue", "label": "ARM/DISARM", "bounce": "0" } }
   ],
   "connections": [
     [ "pir:VCC", "uno:5V", "red", [] ],

@@ -5,16 +5,10 @@ author: 'Panz-08'
 steps:
   - wait-serial: 'Sistem AKTIF'
 
-  # Picu gerakan pada sensor PIR
-  - set-control:
-      part-id: pir
-      control: motion
-      value: 1
+  # Sensor PIR Wokwi belum punya kontrol otomasi, jadi pakai perintah uji
+  # bawaan sketch: ketik 'M' untuk mensimulasikan gerakan.
+  - write-serial: 'M'
   - wait-serial: 'ALARM: gerakan terdeteksi!'
 
-  # Hentikan gerakan -> alarm berhenti setelah 3 detik
-  - set-control:
-      part-id: pir
-      control: motion
-      value: 0
+  # Gerakan berhenti -> alarm berhenti otomatis setelah 3 detik
   - wait-serial: 'Alarm berhenti: area kembali aman.'

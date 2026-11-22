@@ -85,6 +85,7 @@ Contoh respons `GET /api/data`:
 
 ## Status verifikasi
 
-- [ ] Kompilasi `esp32:esp32:esp32` (core ESP32 sedang dipasang).
+- [x] Kompilasi `esp32:esp32:esp32` berhasil (1.008.447 byte / 76% flash).
 - [x] `wokwi-cli lint` pada `diagram.json`: tidak ada masalah.
-- [ ] Simulasi Wokwi interaktif: cek Serial Monitor dan dashboard.
+- [x] Automation Scenario Wokwi lulus (WiFi, web server, dan alarm suhu).
+- [ ] Uji interaktif: cek Serial Monitor dan dashboard.

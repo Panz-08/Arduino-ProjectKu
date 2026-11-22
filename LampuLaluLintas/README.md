@@ -73,4 +73,5 @@ FASE: HIJAU - kendaraan boleh jalan
 
 - [x] Kompilasi `arduino:avr:uno` berhasil (3.570 byte / 11% flash).
 - [x] `wokwi-cli lint` pada `diagram.json`: tidak ada masalah.
-- [ ] Simulasi Wokwi interaktif: jalankan sesuai langkah di atas.
+- [x] Automation Scenario Wokwi lulus (tombol memicu fase merah pejalan kaki).
+- [ ] Uji interaktif: jalankan sesuai langkah di atas.

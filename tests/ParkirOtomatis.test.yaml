@@ -8,13 +8,13 @@ steps:
   # Kendaraan mendekat
   - set-control:
       part-id: ultrasonik
-      control: distance
+      name: distance
       value: 10
   - wait-serial: 'Palang DIBUKA'
 
   # Kendaraan menjauh -> palang menutup setelah 3 detik
   - set-control:
       part-id: ultrasonik
-      control: distance
+      name: distance
       value: 100
   - wait-serial: 'Palang DITUTUP'

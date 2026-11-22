@@ -5,6 +5,7 @@ int statusSensorSebelumnya = HIGH;
 bool statusLED = LOW;
 
 unsigned long waktuTepukanPertama = 0;
+unsigned long waktuTepukanTerakhir = 0;
 int hitungTepukan = 0;
 
 const unsigned long jedaMaksimalAntarTepukan = 500;
@@ -18,22 +19,25 @@ void setup() {
   pinMode(pinSensor, INPUT);
   pinMode(pinLED, OUTPUT);
   digitalWrite(pinLED, statusLED);
+  waktuTepukanTerakhir = millis();
 }
 
 void loop() {
   int statusSensorSekarang = digitalRead(pinSensor);
 
   if (statusSensorSekarang == LOW && statusSensorSebelumnya == HIGH) {
-    
-    if (millis() - waktuTepukanPertama > jedaDebounce) {
+    unsigned long sekarang = millis();
+
+    if (sekarang - waktuTepukanTerakhir > jedaDebounce) {
+      waktuTepukanTerakhir = sekarang;
       hitungTepukan++;
       
       if (hitungTepukan == 1) {
-        waktuTepukanPertama = millis();
+        waktuTepukanPertama = sekarang;
         Serial.println("Tepukan 1 terdeteksi...");
       }
       
-      else if (hitungTepukan == 2 && (millis() - waktuTepukanPertama <= jedaMaksimalAntarTepukan)) {
+      else if (hitungTepukan == 2 && (sekarang - waktuTepukanPertama <= jedaMaksimalAntarTepukan)) {
         statusLED = !statusLED;
         digitalWrite(pinLED, statusLED);
         hitungTepukan = 0;
@@ -45,7 +49,7 @@ void loop() {
 
   statusSensorSebelumnya = statusSensorSekarang;
 
-  if (hitungTepukan > 0 && (millis() - waktuTepukanPertama > jedaMaksimalAntarTepukan)) {
+  if (hitungTepukan > 0 && (millis() - waktuTepukanTerakhir > jedaMaksimalAntarTepukan)) {
     hitungTepukan = 0; 
   }
 }

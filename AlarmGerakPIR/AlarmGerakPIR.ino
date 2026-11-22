@@ -24,10 +24,15 @@ const uint8_t PIN_LED    = 13;
 const unsigned long JEDA_KEDIP   = 120;
 const unsigned long JEDA_BUNYI   = 250;
 const unsigned long JEDA_SELESAI = 3000;
+const unsigned long DURASI_GERAK_PAKSA = 800;
 
 bool aktif = true;
 bool alarm = false;
 bool ledNyala = false;
+
+// Simulasi gerakan lewat Serial Monitor (untuk pengujian tanpa sensor PIR)
+bool gerakPaksa = false;
+unsigned long waktuGerakPaksa = 0;
 
 unsigned long waktuKedip = 0;
 unsigned long waktuBunyi = 0;
@@ -65,6 +70,7 @@ void setup() {
   Serial.println();
   Serial.println("=== Alarm Gerak PIR ===");
   Serial.println("Sistem AKTIF. Tekan tombol untuk ARM/DISARM.");
+  Serial.println("Ketik M di Serial Monitor untuk mensimulasikan gerakan.");
 }
 
 void loop() {
@@ -76,7 +82,24 @@ void loop() {
     Serial.println(aktif ? "AKTIF (ARM)" : "NONAKTIF (DISARM)");
   }
 
+  // Perintah uji: ketik 'M' untuk mensimulasikan gerakan selama 800 ms
+  while (Serial.available() > 0) {
+    char c = Serial.read();
+    if (c == 'm' || c == 'M') {
+      gerakPaksa = true;
+      waktuGerakPaksa = millis();
+      Serial.println("(uji) gerakan disimulasikan.");
+    }
+  }
+
   bool gerak = digitalRead(PIN_PIR) == HIGH;
+  if (gerakPaksa) {
+    if (millis() - waktuGerakPaksa < DURASI_GERAK_PAKSA) {
+      gerak = true;
+    } else {
+      gerakPaksa = false;
+    }
+  }
 
   if (aktif && gerak) {
     terakhirGerak = millis();

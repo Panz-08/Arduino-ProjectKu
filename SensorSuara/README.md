@@ -74,4 +74,5 @@ menghasilkan sinyal LOW, sama seperti output sensor suara saat mendeteksi tepuka
 
 - [x] Kompilasi `arduino:avr:uno` berhasil.
 - [x] `wokwi-cli lint` pada `diagram.json`: tidak ada masalah.
-- [ ] Simulasi Wokwi interaktif: klik tombol dua kali cepat.
+- [x] Automation Scenario Wokwi lulus (dua tepukan mengubah LED).
+- [ ] Uji interaktif: klik tombol dua kali cepat.

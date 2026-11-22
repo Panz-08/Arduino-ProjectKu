@@ -3,7 +3,7 @@
   "author": "Panz-08",
   "editor": "wokwi",
   "parts": [
-    { "type": "board-arduino-uno", "id": "uno", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 0, "left": 0, "attrs": {} },
 
     { "type": "wokwi-hc-sr04", "id": "ultrasonik", "top": -120, "left": 320, "attrs": { "distance": "400" } },
 

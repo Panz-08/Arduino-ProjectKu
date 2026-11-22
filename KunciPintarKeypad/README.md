@@ -100,4 +100,5 @@ Lockout selesai. Silakan coba lagi.
 
 - [x] Kompilasi `arduino:avr:uno` berhasil.
 - [x] `wokwi-cli lint` pada `diagram.json`: tidak ada masalah.
-- [ ] Simulasi Wokwi interaktif: ketik PIN pada keypad.
+- [x] Automation Scenario Wokwi lulus (PIN benar membuka, PIN salah ditolak).
+- [ ] Uji interaktif: ketik PIN pada keypad.

@@ -86,4 +86,5 @@ Wokwi tidak memiliki part sensor kelembapan tanah, jadi `diagram.json` memakai
 
 - [x] Kompilasi `arduino:avr:uno` berhasil.
 - [x] `wokwi-cli lint` pada `diagram.json`: tidak ada masalah.
-- [ ] Simulasi Wokwi interaktif: putar potensiometer.
+- [x] Automation Scenario Wokwi lulus (nilai basah/kering mengubah LED).
+- [ ] Uji interaktif: putar potensiometer.

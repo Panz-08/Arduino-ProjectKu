@@ -3,7 +3,7 @@
   "author": "Panz-08",
   "editor": "wokwi",
   "parts": [
-    { "type": "board-arduino-uno", "id": "uno", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 0, "left": 0, "attrs": {} },
 
     { "type": "wokwi-led", "id": "ledMerah", "top": -120, "left": 300, "attrs": { "color": "red", "label": "MERAH" } },
     { "type": "wokwi-resistor", "id": "rMerah", "top": -60, "left": 300, "attrs": { "value": "220" } },
@@ -17,7 +17,7 @@
     { "type": "wokwi-led", "id": "ledPejalan", "top": -120, "left": 600, "attrs": { "color": "orange", "label": "PEJALAN" } },
     { "type": "wokwi-resistor", "id": "rPejalan", "top": -60, "left": 600, "attrs": { "value": "220" } },
 
-    { "type": "wokwi-pushbutton", "id": "tombol", "top": 120, "left": 300, "attrs": { "color": "green", "label": "PENYEBERANGAN" } },
+    { "type": "wokwi-pushbutton", "id": "tombol", "top": 120, "left": 300, "attrs": { "color": "green", "label": "PENYEBERANGAN", "bounce": "0" } },
     { "type": "wokwi-buzzer", "id": "buzzer", "top": 120, "left": 450, "attrs": { "volume": "0.4" } }
   ],
   "connections": [

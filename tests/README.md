@@ -32,6 +32,12 @@ Dari root repo:
 bash tests/run-wokwi.sh
 ```
 
+Untuk menjalankan sebagian proyek saja, sebutkan namanya:
+
+```bash
+bash tests/run-wokwi.sh SensorSuara LampuLaluLintas
+```
+
 Script akan:
 
 1. Menyalin sketch + `diagram.json` ke `build/wokwi/<NamaProyek>/`.
@@ -39,6 +45,13 @@ Script akan:
 3. Membuat `wokwi.toml` yang menunjuk ke firmware hasil kompilasi.
 4. Menjalankan `wokwi-cli` dengan scenario terkait.
 5. Menyimpan log serial ke `build/wokwi/<NamaProyek>/serial.log`.
+
+Batas waktu default 45 detik untuk board AVR dan 90 detik untuk ESP32. Untuk
+mengubahnya, set `WOKWI_TIMEOUT_MS`:
+
+```bash
+WOKWI_TIMEOUT_MS=120000 bash tests/run-wokwi.sh MonitorSuhuWebESP32
+```
 
 ## Menjalankan satu proyek manual
 
@@ -60,10 +73,11 @@ version = 1
 firmware = 'build/LampuLaluLintas.ino.hex'
 EOF
 
-wokwi-cli build/wokwi/LampuLaluLintas \
-  --scenario build/wokwi/LampuLaluLintas/scenario.yaml \
+cd build/wokwi/LampuLaluLintas
+wokwi-cli . \
+  --scenario scenario.yaml \
   --timeout 30000 \
-  --serial-log-file build/wokwi/LampuLaluLintas/serial.log
+  --serial-log-file serial.log
 ```
 
 ## Daftar skenario
@@ -82,3 +96,14 @@ wokwi-cli build/wokwi/LampuLaluLintas \
 
 > Automation Scenario Wokwi masih berstatus **alpha**. Nama kontrol part dapat
 > berubah pada versi Wokwi CLI berikutnya.
+
+## Catatan pengujian
+
+- Tombol pada `diagram.json` memakai `"bounce": "0"` supaya satu tekan hanya
+  menghasilkan satu transisi. Sketch tetap memiliki debounce untuk rangkaian
+  nyata.
+- Sensor PIR di Wokwi belum punya kontrol Automation Scenario. Skenario
+  `AlarmGerakPIR` memakai perintah uji `M` lewat Serial Monitor, yang memang
+  disediakan oleh sketch.
+- Skenario `SensorSuara` memeriksa pin 13 dengan `expect-pin`, bukan menunggu
+  teks, karena teks `Tepukan 2` muncul tepat saat tombol ditekan.

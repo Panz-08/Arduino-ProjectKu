@@ -56,11 +56,18 @@ dinonaktifkan lewat tombol.
 5. Saat simulasi berjalan, **klik sensor PIR** lalu pilih **Simulate Motion**.
 6. LED dan buzzer akan aktif. Klik tombol **ARM/DISARM** untuk menguji mode nonaktif.
 
+Sensor PIR di Wokwi belum punya kontrol untuk Automation Scenario. Karena itu
+sketch juga menerima perintah uji dari Serial Monitor: ketik **`M`** lalu Enter
+untuk mensimulasikan gerakan selama 800 ms. Perintah ini berguna untuk pengujian
+otomatis dan untuk mencoba alarm tanpa sensor PIR.
+
 Contoh log:
 
 ```text
 === Alarm Gerak PIR ===
 Sistem AKTIF. Tekan tombol untuk ARM/DISARM.
+Ketik M di Serial Monitor untuk mensimulasikan gerakan.
+(uji) gerakan disimulasikan.
 ALARM: gerakan terdeteksi!
 Alarm berhenti: area kembali aman.
 Sistem NONAKTIF (DISARM)
@@ -70,4 +77,5 @@ Sistem NONAKTIF (DISARM)
 
 - [x] Kompilasi `arduino:avr:uno` berhasil.
 - [x] `wokwi-cli lint` pada `diagram.json`: tidak ada masalah.
-- [ ] Simulasi Wokwi interaktif: klik **Simulate Motion** pada sensor PIR.
+- [x] Automation Scenario Wokwi lulus (gerakan lewat perintah Serial `M`).
+- [ ] Uji interaktif: klik **Simulate Motion** pada sensor PIR.

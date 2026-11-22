@@ -90,4 +90,5 @@ Palang DITUTUP - area aman.
 
 - [x] Kompilasi `arduino:avr:uno` berhasil.
 - [x] `wokwi-cli lint` pada `diagram.json`: tidak ada masalah.
-- [ ] Simulasi Wokwi interaktif: ubah nilai distance pada sensor.
+- [x] Automation Scenario Wokwi lulus (dekat membuka, jauh menutup palang).
+- [ ] Uji interaktif: ubah nilai distance pada sensor.

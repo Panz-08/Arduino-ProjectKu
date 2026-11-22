@@ -5,27 +5,35 @@ author: 'Panz-08'
 steps:
   - wait-serial: '=== Detektor Tepukan Ganda ==='
 
+  # Beri waktu agar debounce awal sketch lewat
+  - delay: 300ms
+
   # Tepukan pertama
   - set-control:
       part-id: tepuk
-      control: pressed
+      name: pressed
       value: 1
-  - delay: 100ms
+  - delay: 50ms
   - set-control:
       part-id: tepuk
-      control: pressed
+      name: pressed
       value: 0
 
-  # Tepukan kedua dalam 500 ms
+  # Tepukan kedua masih di dalam jendela 500 ms
   - delay: 150ms
   - set-control:
       part-id: tepuk
-      control: pressed
+      name: pressed
       value: 1
-  - delay: 100ms
+  - delay: 50ms
   - set-control:
       part-id: tepuk
-      control: pressed
+      name: pressed
       value: 0
+  - delay: 300ms
 
-  - wait-serial: 'Tepukan 2 terdeteksi - LED NYALA'
+  # Setelah dua tepukan, LED pada pin 13 harus menyala
+  - expect-pin:
+      part-id: uno
+      name: '13'
+      value: 1

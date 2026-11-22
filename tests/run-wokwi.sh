@@ -4,7 +4,8 @@
 #
 # Pemakaian:
 #   export WOKWI_CLI_TOKEN="token-dari-wokwi.com/dashboard/ci"
-#   bash tests/run-wokwi.sh
+#   bash tests/run-wokwi.sh                 # semua proyek
+#   bash tests/run-wokwi.sh LampuLaluLintas # hanya proyek tertentu
 #
 # Hasil ada di build/wokwi/<NamaProyek>/serial.log
 
@@ -12,7 +13,8 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 OUT_ROOT="$ROOT/build/wokwi"
-TIMEOUT_MS="${WOKWI_TIMEOUT_MS:-45000}"
+# Timeout default: 45 detik untuk AVR, 90 detik untuk ESP32 (booting + WiFi).
+TIMEOUT_MS="${WOKWI_TIMEOUT_MS:-}"
 
 if [[ -z "${WOKWI_CLI_TOKEN:-}" ]]; then
   echo "ERROR: WOKWI_CLI_TOKEN belum di-set." >&2
@@ -36,14 +38,33 @@ PROJECTS=(
   "MonitorSuhuWebESP32|esp32:esp32:esp32"
 )
 
+# Filter opsional: nama proyek yang diberikan sebagai argumen
+selected=("$@")
+
 lulus=0
 gagal=0
 
 for item in "${PROJECTS[@]}"; do
   nama="${item%%|*}"
   fqbn="${item##*|}"
+
+  if [[ ${#selected[@]} -gt 0 ]]; then
+    cocok=0
+    for s in "${selected[@]}"; do
+      [[ "$s" == "$nama" ]] && cocok=1
+    done
+    [[ "$cocok" -eq 1 ]] || continue
+  fi
   proyek="$ROOT/$nama"
   out="$OUT_ROOT/$nama"
+
+  if [[ -n "$TIMEOUT_MS" ]]; then
+    timeout_ms="$TIMEOUT_MS"
+  elif [[ "$fqbn" == esp32:* ]]; then
+    timeout_ms=90000
+  else
+    timeout_ms=45000
+  fi
 
   echo
   echo "============================================================"
@@ -83,7 +104,7 @@ EOF
   echo "[3/3] Menjalankan simulasi Wokwi..."
   if wokwi-cli "$out" \
       --scenario "$out/scenario.yaml" \
-      --timeout "$TIMEOUT_MS" \
+      --timeout "$timeout_ms" \
       --serial-log-file "$out/serial.log"; then
     echo "LULUS: $nama"
     lulus=$((lulus + 1))

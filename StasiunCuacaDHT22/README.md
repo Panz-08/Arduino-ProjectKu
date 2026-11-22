@@ -82,4 +82,5 @@ Suhu kembali normal.
 
 - [x] Kompilasi `arduino:avr:uno` berhasil.
 - [x] `wokwi-cli lint` pada `diagram.json`: tidak ada masalah.
-- [ ] Simulasi Wokwi interaktif: ubah slider suhu pada DHT22.
+- [x] Automation Scenario Wokwi lulus (suhu 36 °C memicu alarm).
+- [ ] Uji interaktif: ubah slider suhu pada DHT22.
