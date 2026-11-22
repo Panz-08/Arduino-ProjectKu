@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "author": "Panz-08",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-arduino-uno", "id": "uno", "top": 0, "left": 0, "attrs": {} },
+
+    { "type": "wokwi-hc-sr04", "id": "ultrasonik", "top": -120, "left": 320, "attrs": { "distance": "400" } },
+
+    { "type": "wokwi-servo", "id": "palang", "top": 40, "left": 320, "attrs": { "horn": "single", "hornColor": "#ff6600" } },
+
+    { "type": "wokwi-lcd1602", "id": "lcd", "top": -80, "left": 560, "attrs": { "pins": "i2c" } },
+
+    { "type": "wokwi-led", "id": "ledHijau", "top": 220, "left": 320, "attrs": { "color": "green", "label": "BUKA" } },
+    { "type": "wokwi-resistor", "id": "rHijau", "top": 280, "left": 320, "attrs": { "value": "220" } },
+
+    { "type": "wokwi-led", "id": "ledMerah", "top": 220, "left": 420, "attrs": { "color": "red", "label": "TUTUP" } },
+    { "type": "wokwi-resistor", "id": "rMerah", "top": 280, "left": 420, "attrs": { "value": "220" } },
+
+    { "type": "wokwi-buzzer", "id": "buzzer", "top": 220, "left": 520, "attrs": { "volume": "0.4" } }
+  ],
+  "connections": [
+    [ "ultrasonik:VCC", "uno:5V", "red", [] ],
+    [ "ultrasonik:GND", "uno:GND.1", "black", [] ],
+    [ "ultrasonik:TRIG", "uno:9", "green", [] ],
+    [ "ultrasonik:ECHO", "uno:8", "green", [] ],
+
+    [ "palang:V+", "uno:5V", "red", [] ],
+    [ "palang:GND", "uno:GND.2", "black", [] ],
+    [ "palang:PWM", "uno:10", "orange", [] ],
+
+    [ "lcd:GND", "uno:GND.3", "black", [] ],
+    [ "lcd:VCC", "uno:5V", "red", [] ],
+    [ "lcd:SDA", "uno:A4", "blue", [] ],
+    [ "lcd:SCL", "uno:A5", "yellow", [] ],
+
+    [ "uno:6", "rHijau:1", "green", [] ],
+    [ "rHijau:2", "ledHijau:A", "green", [] ],
+    [ "ledHijau:C", "uno:GND.1", "black", [] ],
+
+    [ "uno:7", "rMerah:1", "green", [] ],
+    [ "rMerah:2", "ledMerah:A", "green", [] ],
+    [ "ledMerah:C", "uno:GND.2", "black", [] ],
+
+    [ "uno:5", "buzzer:2", "green", [] ],
+    [ "buzzer:1", "uno:GND.3", "black", [] ]
+  ]
+}

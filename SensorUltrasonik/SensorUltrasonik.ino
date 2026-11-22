@@ -20,6 +20,10 @@ unsigned long waktuSebelumnya = 0;
 const int jedaServo = 30; 
 
 void setup() {
+  Serial.begin(9600);
+  Serial.println("=== Radar Cerdas ===");
+  Serial.println("Servo memindai 15-165 derajat. Ambang deteksi: 15 cm.");
+
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
   pinMode(ledPin, OUTPUT);
@@ -40,6 +44,19 @@ void setup() {
 
 void loop() {
   ambilJarak();
+
+  static unsigned long waktuLog = 0;
+  if (millis() - waktuLog >= 500) {
+    waktuLog = millis();
+    Serial.print("Sudut: ");
+    Serial.print(sudutSekarang);
+    Serial.print(" | Jarak: ");
+    Serial.print(distance);
+    Serial.println(" cm");
+    if (distance <= jarakAman && distance > 0) {
+      Serial.println("TARGET TERKUNCI");
+    }
+  }
 
   if (distance <= jarakAman && distance > 0) {
     digitalWrite(ledPin, HIGH);

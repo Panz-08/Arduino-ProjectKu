@@ -1,0 +1,15 @@
+name: 'Monitor Suhu Web ESP32 - WiFi dan alarm'
+version: 1
+author: 'Panz-08'
+
+steps:
+  - wait-serial: 'WiFi terhubung'
+  - wait-serial: 'Web server aktif pada port 80.'
+  - wait-serial: 'Suhu=24.0 C'
+
+  # Suhu dinaikkan melewati batas 35 C
+  - set-control:
+      part-id: dht
+      control: temperature
+      value: 36
+  - wait-serial: 'PERINGATAN: suhu di atas batas 35 C!'

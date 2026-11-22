@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "author": "Panz-08",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-arduino-uno", "id": "uno", "top": 0, "left": 0, "attrs": {} },
+
+    { "type": "wokwi-pir-motion-sensor", "id": "pir", "top": -100, "left": 300, "attrs": { "delayTime": "5" } },
+
+    { "type": "wokwi-led", "id": "ledAlarm", "top": 100, "left": 300, "attrs": { "color": "red", "label": "ALARM" } },
+    { "type": "wokwi-resistor", "id": "rAlarm", "top": 160, "left": 300, "attrs": { "value": "220" } },
+
+    { "type": "wokwi-buzzer", "id": "buzzer", "top": 100, "left": 430, "attrs": { "volume": "0.5" } },
+
+    { "type": "wokwi-pushbutton", "id": "tombol", "top": 100, "left": 560, "attrs": { "color": "blue", "label": "ARM/DISARM" } }
+  ],
+  "connections": [
+    [ "pir:VCC", "uno:5V", "red", [] ],
+    [ "pir:GND", "uno:GND.1", "black", [] ],
+    [ "pir:OUT", "uno:2", "green", [] ],
+
+    [ "uno:13", "rAlarm:1", "green", [] ],
+    [ "rAlarm:2", "ledAlarm:A", "green", [] ],
+    [ "ledAlarm:C", "uno:GND.2", "black", [] ],
+
+    [ "uno:9", "buzzer:2", "green", [] ],
+    [ "buzzer:1", "uno:GND.3", "black", [] ],
+
+    [ "uno:3", "tombol:1.l", "green", [] ],
+    [ "tombol:2.l", "uno:GND.1", "black", [] ]
+  ]
+}

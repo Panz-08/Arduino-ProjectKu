@@ -1,0 +1,21 @@
+name: 'Radar Cerdas - deteksi target'
+version: 1
+author: 'Panz-08'
+
+steps:
+  - wait-serial: '=== Radar Cerdas ==='
+  - delay: 1000ms
+
+  # Objek didekatkan ke sensor -> target terkunci
+  - set-control:
+      part-id: ultrasonik
+      control: distance
+      value: 10
+  - wait-serial: 'TARGET TERKUNCI'
+
+  # Objek dijauhkan -> radar kembali memindai
+  - set-control:
+      part-id: ultrasonik
+      control: distance
+      value: 100
+  - wait-serial: 'Jarak:'

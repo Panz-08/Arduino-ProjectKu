@@ -55,3 +55,23 @@ Parameter waktu dapat diubah pada deklarasi berikut:
 ```cpp
 const unsigned long jedaMaksimalAntarTepukan = 500; // ms
 const unsigned long jedaDebounce = 100;             // ms
+```
+
+## Simulasi di Wokwi
+
+Wokwi belum menyediakan part sensor suara KY-038. Sebagai pengganti, `diagram.json`
+memakai **push button** dengan resistor pull-up 10 kΩ pada D8. Menekan tombol
+menghasilkan sinyal LOW, sama seperti output sensor suara saat mendeteksi tepukan.
+
+1. Buat proyek **Arduino Uno** baru di [wokwi.com](https://wokwi.com).
+2. Tempel `SensorSuara.ino` ke `sketch.ino`.
+3. Tempel `diagram.json` ke tab diagram.
+4. Klik **Play**.
+5. Klik tombol **TEPUK 2x** dua kali dengan cepat (jeda < 500 ms).
+6. LED pada D13 akan berubah status (nyala ↔ mati).
+
+## Status verifikasi
+
+- [x] Kompilasi `arduino:avr:uno` berhasil.
+- [x] `wokwi-cli lint` pada `diagram.json`: tidak ada masalah.
+- [ ] Simulasi Wokwi interaktif: klik tombol dua kali cepat.

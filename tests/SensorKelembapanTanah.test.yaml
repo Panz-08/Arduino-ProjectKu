@@ -1,0 +1,20 @@
+name: 'Monitor Kelembapan Tanah - basah dan kering'
+version: 1
+author: 'Panz-08'
+
+steps:
+  - wait-serial: 'Kelembapan:'
+
+  # Potensiometer mendekati 0 V -> kelembapan tinggi -> LED nyala
+  - set-control:
+      part-id: tanah
+      control: position
+      value: 0.2
+  - wait-serial: 'LED NYALA'
+
+  # Potensiometer mendekati 5 V -> kelembapan rendah -> LED mati
+  - set-control:
+      part-id: tanah
+      control: position
+      value: 0.9
+  - wait-serial: 'LED MATI'

@@ -1,0 +1,22 @@
+name: 'Lampu Lalu Lintas - permintaan pejalan kaki'
+version: 1
+author: 'Panz-08'
+
+steps:
+  - wait-serial: 'FASE: HIJAU'
+
+  # Tekan tombol penyeberangan
+  - set-control:
+      part-id: tombol
+      control: pressed
+      value: 1
+  - delay: 150ms
+  - set-control:
+      part-id: tombol
+      control: pressed
+      value: 0
+  - wait-serial: 'Permintaan penyeberangan diterima.'
+
+  # Tunggu hingga fase merah untuk pejalan kaki
+  - wait-serial: 'FASE: MERAH - pejalan kaki boleh menyeberang'
+  - wait-serial: 'FASE: HIJAU'

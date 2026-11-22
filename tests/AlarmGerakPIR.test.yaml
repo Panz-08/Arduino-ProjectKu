@@ -1,0 +1,20 @@
+name: 'Alarm Gerak PIR - deteksi gerakan'
+version: 1
+author: 'Panz-08'
+
+steps:
+  - wait-serial: 'Sistem AKTIF'
+
+  # Picu gerakan pada sensor PIR
+  - set-control:
+      part-id: pir
+      control: motion
+      value: 1
+  - wait-serial: 'ALARM: gerakan terdeteksi!'
+
+  # Hentikan gerakan -> alarm berhenti setelah 3 detik
+  - set-control:
+      part-id: pir
+      control: motion
+      value: 0
+  - wait-serial: 'Alarm berhenti: area kembali aman.'

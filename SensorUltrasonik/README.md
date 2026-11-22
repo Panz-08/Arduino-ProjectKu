@@ -70,3 +70,20 @@ const int jarakAman = 15;        // Ambang jarak deteksi (cm)
 const int jedaServo = 30;        // Jeda pergerakan servo (ms)
 int sudutSekarang = 15;          // Sudut awal servo
 int arahPutaran = 3;             // Increment sudut per langkah
+```
+
+## Simulasi di Wokwi
+
+1. Buat proyek **Arduino Uno** baru di [wokwi.com](https://wokwi.com).
+2. Tempel `SensorUltrasonik.ino` ke `sketch.ino`.
+3. Tempel `diagram.json` ke tab diagram.
+4. Klik **Play**.
+5. Klik sensor **HC-SR04** dan ubah nilai **distance** menjadi `10` cm untuk
+   memicu status **TARGET TERKUNCI** (LED menyala).
+6. Ubah kembali ke `100` cm untuk melihat servo memindai dan LCD menampilkan sudut.
+
+## Status verifikasi
+
+- [x] Kompilasi `arduino:avr:uno` berhasil.
+- [x] `wokwi-cli lint` pada `diagram.json`: tidak ada masalah.
+- [ ] Simulasi Wokwi interaktif: ubah nilai distance pada sensor.

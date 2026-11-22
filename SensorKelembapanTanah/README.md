@@ -66,3 +66,24 @@ Parameter utama dapat diubah pada bagian berikut:
 const int pinSensor = A0;
 const int pinLED = 13;
 const int batasAtas = 50;
+```
+
+## Simulasi di Wokwi
+
+Wokwi tidak memiliki part sensor kelembapan tanah, jadi `diagram.json` memakai
+**potensiometer** pada A0 sebagai pengganti nilai analog sensor.
+
+1. Buat proyek **Arduino Uno** baru di [wokwi.com](https://wokwi.com).
+2. Tempel `SensorKelembapanTanah.ino` ke `sketch.ino`.
+3. Tempel `diagram.json` ke tab diagram.
+4. Klik **Play**.
+5. Klik potensiometer dan atur nilainya:
+   - `800` → kelembapan ±27% (LED mati).
+   - `400` → kelembapan ±76% (LED nyala).
+6. Perhatikan perubahan LCD dan Serial Monitor.
+
+## Status verifikasi
+
+- [x] Kompilasi `arduino:avr:uno` berhasil.
+- [x] `wokwi-cli lint` pada `diagram.json`: tidak ada masalah.
+- [ ] Simulasi Wokwi interaktif: putar potensiometer.

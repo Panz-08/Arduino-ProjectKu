@@ -1,0 +1,20 @@
+name: 'Stasiun Cuaca DHT22 - alarm suhu panas'
+version: 1
+author: 'Panz-08'
+
+steps:
+  - wait-serial: 'Suhu=24.0 C'
+
+  # Suhu dinaikkan melewati batas 35 C
+  - set-control:
+      part-id: dht
+      control: temperature
+      value: 36
+  - wait-serial: 'PERINGATAN: suhu di atas batas 35 C!'
+
+  # Suhu kembali normal
+  - set-control:
+      part-id: dht
+      control: temperature
+      value: 24
+  - wait-serial: 'Suhu kembali normal.'

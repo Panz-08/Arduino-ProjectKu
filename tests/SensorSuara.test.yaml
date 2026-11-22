@@ -1,0 +1,31 @@
+name: 'Detektor Tepukan Ganda - dua tepukan'
+version: 1
+author: 'Panz-08'
+
+steps:
+  - wait-serial: '=== Detektor Tepukan Ganda ==='
+
+  # Tepukan pertama
+  - set-control:
+      part-id: tepuk
+      control: pressed
+      value: 1
+  - delay: 100ms
+  - set-control:
+      part-id: tepuk
+      control: pressed
+      value: 0
+
+  # Tepukan kedua dalam 500 ms
+  - delay: 150ms
+  - set-control:
+      part-id: tepuk
+      control: pressed
+      value: 1
+  - delay: 100ms
+  - set-control:
+      part-id: tepuk
+      control: pressed
+      value: 0
+
+  - wait-serial: 'Tepukan 2 terdeteksi - LED NYALA'

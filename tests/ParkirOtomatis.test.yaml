@@ -1,0 +1,20 @@
+name: 'Parkir Otomatis - buka dan tutup palang'
+version: 1
+author: 'Panz-08'
+
+steps:
+  - wait-serial: '=== Parkir Otomatis ==='
+
+  # Kendaraan mendekat
+  - set-control:
+      part-id: ultrasonik
+      control: distance
+      value: 10
+  - wait-serial: 'Palang DIBUKA'
+
+  # Kendaraan menjauh -> palang menutup setelah 3 detik
+  - set-control:
+      part-id: ultrasonik
+      control: distance
+      value: 100
+  - wait-serial: 'Palang DITUTUP'
